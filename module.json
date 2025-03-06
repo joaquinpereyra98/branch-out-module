@@ -38,9 +38,14 @@
         "hbs"
       ],
       "paths": [
-        "styles",
+        "styles/branch-out.css",
         "templates/"
       ]
+    }
+  },
+  "documentTypes": {
+    "JournalEntryPage": {
+      "dialogue": {}
     }
   }
 }

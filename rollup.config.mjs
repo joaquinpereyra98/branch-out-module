@@ -2,7 +2,7 @@
 export default {
   input: "./branch-out.mjs",
   output: {
-    file: './public/branch-out.mjs',
-    format: 'esm',
-  },
+    file: "./public/branch-out.mjs",
+    format: "esm"
+  }
 };
