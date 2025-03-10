@@ -1,36 +1,105 @@
-.dialogue-container {
-    height: 100%;
-    z-index: 50;
-    position: absolute;
-    display: flex;
-    justify-content: flex-end;
-    top: 0;
-    right: 0;
+.branch-out {
+    &.dialogue-container {
+        height: 100%;
+        z-index: 50;
+        position: absolute;
+        display: flex;
+        justify-content: flex-end;
+        top: 0;
+        right: 0;
 
-    .dialogue-panel {
-        width: 50vh;
-        border: 0.5rem solid transparent;
-        border-image:
-            linear-gradient(to top,
-                white,
-                rgba(0, 0, 0, 0.4),
-                rgba(0, 0, 0, 0)) 1 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        padding: 0 1rem;
+        .dialogue-panel {
+            width: 50vh;
+            border: 0.5rem solid transparent;
+            border-image:
+                linear-gradient(to top,
+                    white,
+                    rgba(0, 0, 0, 0.4),
+                    rgba(0, 0, 0, 0)) 1 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 0 1rem;
 
-        .close-container {
-            color: white;
+            .close-container {
+                color: white;
+            }
+        }
+
+        .dialogue-portrait {
+            width: 10rem;
+            height: 12rem;
+            margin: 10% 0 0;
+            border: 0.3rem solid transparent;
+            border-right: 0;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.6));
+            background-color: rgba(0, 0, 0, 0.4);
         }
     }
 
-    .dialogue-portrait {
-        width: 10rem;
-        height: 12rem;
-        margin: 10% 0 0;
-        border: 0.3rem solid transparent;
-        border-right: 0;
-        border-image-slice: 1;
-        border-image-source: linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.6));
-        background-color: rgba(0, 0, 0, 0.4);
+    &.dialogue-journal {
+        .text-dialogue-container {
+            padding: 0.4rem;
+
+            .editor-container {
+                border: 2px solid;
+                border-radius: 0 0 0.4rem 0.4rem;
+            }
+        }
+
+        .choices-container {
+            padding: 0.4rem;
+
+            .choices-header .choices-controls {
+                margin: auto;
+                flex: 0;
+                text-wrap: nowrap;
+                color: rgba(0, 0, 0, 0.7);
+                font-size: 1.5rem;
+            }
+
+            .choices-list {
+                list-style: none;
+
+                .choice-container {
+                    .choice-header {
+                        border: 2px groove gray;
+
+                        .accordion-icon {
+                            flex: 0 0 1rem;
+                            margin: auto 1rem;
+                            font-size: 1.2rem;
+                        }
+
+                        input {
+                            height: 2rem;
+                            font-size: 1.5rem;
+                            border: 0;
+                            padding: 0 0.5rem;
+                        }
+
+                    }
+
+                    .choice-content {
+                        background-color: rgba(0, 0, 0, 0.1);
+                        border-radius: 0 0 0.4rem 0.4rem;
+                        padding: 0.4rem;
+
+                        .form-group {
+                            margin: 0.3rem 2.5rem;
+                        }
+
+                        .subtitle-choice {
+                            border-top: 3px solid rgba(0,0,0,0.4);
+                            padding-top: 0.4rem;
+                        }
+                    }
+
+                    .states-fields{
+                        justify-content: space-around;
+                    }
+                }
+            }
+
+        }
     }
 }

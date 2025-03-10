@@ -1,0 +1,64 @@
+{
+  "TYPES.JournalEntryPage.branch-out.dialogue": "Dialogue",
+  "JOURNALENTRYPAGE.BRANCH_OUT": {
+    "Dialogue": {
+      "FIELDS": {
+        "text": {
+          "label": "Dialogue Text",
+          "hint": "Enter the dialogue text to display."
+        }
+      },
+      "CHOICES_FIELD": {
+        "choiceName": {
+          "label": "Choice Name",
+          "hint": "Enter a unique name for this choice"
+        },
+        "choiceText": {
+          "label": "Choice Text",
+          "hint": "The text displayed for this choice."
+        },
+        "nextNodeId": {
+          "label": "Next Node",
+          "hint": "The identifier of the next dialogue node."
+        },
+        "condition": {
+          "label": "Conditions",
+          "hint": "Define the conditions that must be met for this choice to be available.",
+          "value": {
+            "label": "Condition Value",
+            "hint": "A boolean value determining if this choice should execute the Condition Command."
+          },
+          "command": {
+            "label": "Condition Command",
+            "hint": "A JavaScript function that determines if the condition is met."
+          }
+        },
+        "effectsCommand": {
+          "label": "Effects Command",
+          "hint": "JavaScript functions executed when this choice is selected."
+        },
+        "states": {
+          "label": "States",
+          "hint": "Define the state of this choice.",
+          "hidden": {
+            "label": "Hidden",
+            "hint": "If true, this choice will be hidden."
+          },
+          "disabled": {
+            "label": "Disabled",
+            "hint": "If true, this choice will be disabled."
+          }
+        }
+      },
+      "NodeId": "Node ID",
+      "DialogueText": "Dialogue Text",
+      "DialogueChoices": {
+        "Label": "Dialogue Choices",
+        "Hint": "Define the possible responses and their outcomes."
+      },
+      "EffectManager":{
+        "title": "Effect Manager"
+      }
+    }
+  }
+}

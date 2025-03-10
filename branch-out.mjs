@@ -16,6 +16,11 @@ Hooks.on("init", () => {
     [`${CONSTANTS.MODULE_ID}.dialogue`]: data.DialogueJournalPageData
   });
 
+  DocumentSheetConfig.registerSheet(JournalEntryPage, CONSTANTS.MODULE_ID, apps.JournalDialoguePageSheet, {
+    label: "BRANCH_OUT.JournalDialoguePage",
+    types: [`${CONSTANTS.MODULE_ID}.dialogue`]
+  });
+
   ui.dialoguePanel = new apps.DialoguePanel();
 
 });

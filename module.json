@@ -35,17 +35,29 @@
     "hotReload": {
       "extensions": [
         "css",
-        "hbs"
+        "hbs",
+        "json"
       ],
       "paths": [
         "styles/branch-out.css",
-        "templates/"
+        "templates/",
+        "lang/en.json"
       ]
     }
   },
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    }
+  ],
   "documentTypes": {
     "JournalEntryPage": {
-      "dialogue": {}
+      "dialogue": {
+        "htmlFields": ["text"]
+      }
     }
   }
 }

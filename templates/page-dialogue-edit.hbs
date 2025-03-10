@@ -1,0 +1,132 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <div class="flexcol">
+      {{> journalEntryPageHeader }}
+    <div class="dialogue-data-container form-group">
+      <label>{{localize "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.NodeId"}}</label>
+      <input
+        type="text"
+        class="node-id-input"
+        value="{{dialogue.nodeId}}"
+        disabled
+      />
+    </div>
+  </div>
+  <div class="text-dialogue-container">
+    <h2>{{localize "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.DialogueText"}}</h2>
+    <div class="editor-container">
+      {{formInput dialogue.text.field value=dialogue.text.value compact=true}}
+    </div>
+  </div>
+  <div class="choices-container">
+    <div class="choices-header flexrow">
+      <div class="name-header">
+        <h2>{{localize
+            "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.DialogueChoices.Label"
+          }}</h2>
+      </div>
+      <div class="choices-controls">
+        <a
+          class="choices-control"
+          data-action="createChoice"
+          data-tooltip="{{localize 'DOCUMENT.Create' type="Choice"}}"
+        >
+          <i class="fa-classic fa-plus-square"></i></a>
+      </div>
+    </div>
+    <p class="hint">
+      {{localize "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.DialogueChoices.Hint"}}
+    </p>
+    <li class="choices-list">
+      {{#each dialogue.choicesField as |choiceField choiceKey|}}
+        <div class="choice-container">
+          <div class="choice-header flexrow">
+            <i class="accordion-icon fa-solid fa-angle-down"></i>
+            {{formInput
+              choiceField.choiceName.field
+              value=choiceField.choiceName.value
+              name=choiceField.choiceName.name
+              localize=true
+            }}
+          </div>
+          <div class="choice-content">
+            <div class="choice-text-fields">
+              {{formGroup
+                choiceField.choiceText.field
+                value=choiceField.choiceText.value
+                name=choiceField.choiceText.name
+                localize=true
+                stacked=true
+              }}
+            </div>
+            <div class="next-node-field">
+              {{formGroup
+                choiceField.nextNodeId.field
+                value=choiceField.nextNodeId.value
+                choices=choiceField.nextNodeId.choices
+                name=choiceField.nextNodeId.name
+                localize=true
+                stacked=true
+              }}
+            </div>
+            <h3 class="subtitle-choice">
+              {{localize
+                "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.CHOICES_FIELD.states.label"
+              }}
+            </h3>
+            <div class="states-fields flexrow">
+              {{formGroup
+                choiceField.state.hidden.field
+                value=choiceField.state.hidden.value
+                name=choiceField.state.hidden.name
+                localize=true
+              }}
+              {{formGroup
+                choiceField.state.disabled.field
+                value=choiceField.state.disabled.value
+                name=choiceField.state.disabled.name
+                localize=true
+              }}
+            </div>
+            <h3 class="subtitle-choice">
+              {{localize
+                "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.CHOICES_FIELD.condition.label"
+              }}
+            </h3>
+            <div class="condition-fields">
+              {{formGroup
+                choiceField.condition.field
+                value=choiceField.condition.value
+                name=choiceField.condition.name
+                localize=true
+              }}
+              {{formGroup
+                choiceField.condition.command.field
+                value=choiceField.condition.command.value
+                name=choiceField.condition.command.name
+                localize=true
+              }}
+            </div>
+              <h3 class="subtitle-choice">
+                {{localize
+                  "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.CHOICES_FIELD.effectsCommand.label"
+                }}</h3>
+              <p class="hint">
+                {{localize
+                  "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.CHOICES_FIELD.effectsCommand.hint"
+                }}
+              </p>
+            <div class="effects-field form-group">
+              <button type="button" data-action="effectManager">
+                <i class="fa-regular fa-atom-simple"></i>
+                {{localize
+                  "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.EffectManager.title"
+                }}
+              </button>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+
+    </li>
+  </div>
+</form>
