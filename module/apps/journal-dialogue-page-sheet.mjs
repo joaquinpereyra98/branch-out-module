@@ -1,5 +1,6 @@
 import CONSTANTS from "../constants.mjs";
 import {generatedChoicesId, generateChoiceName} from "../utils.mjs";
+import Accordion from "./accordion.mjs";
 
 export default class JournalDialoguePageSheet extends JournalPageSheet {
 
@@ -8,10 +9,37 @@ export default class JournalDialoguePageSheet extends JournalPageSheet {
     const options = foundry.utils.mergeObject(super.defaultOptions, {
       dragDrop: [{dropSelector: "form"}],
       submitOnChange: true,
-      width: 700
+      width: 700,
+      accordions: [
+        {
+          headingSelector: ".choice-header",
+          contentSelector: ".choice-content",
+          startCollapsed: true,
+          collapseOthers: false,
+          direction: Accordion.DIRECTION.VERTICAL
+        }
+      ]
     });
     options.classes.push("branch-out", "dialogue-journal");
     return options;
+  }
+  /* -------------------------------------------- */
+
+  _accordions = this._createAccordions();
+
+  /**
+     * Instantiate accordion widgets.
+     * @returns {Accordion[]}
+     * @protected
+     */
+  _createAccordions() {
+    if (Array.isArray(this.options.accordions)) return this.options.accordions.map((config) => new Accordion(config));
+    else {
+      console.error(
+        "Branch Out | Error _createAccordions | this.options.accordions should be a Array"
+      );
+      return [];
+    }
   }
 
   /*-------------------------------------------- */
@@ -81,7 +109,8 @@ export default class JournalDialoguePageSheet extends JournalPageSheet {
         value: choice.nextNodeId,
         field: getField("nextNodeId"),
         choices: this.#nextNodeChoices,
-        name: getName("nextNodeId")
+        name: getName("nextNodeId"),
+        anchor: this.document.parent.pages.get(choice.nextNodeId)?.toAnchor()?.outerHTML
       };
   
       choiceField.condition = {
@@ -100,6 +129,8 @@ export default class JournalDialoguePageSheet extends JournalPageSheet {
         field: getField("choiceText"),
         name: getName("choiceText")
       };
+
+      choiceField.hasEffects = Object.keys(choice.effects).length > 0;
     }
 
     return choicesField;
@@ -130,12 +161,22 @@ export default class JournalDialoguePageSheet extends JournalPageSheet {
           case "createChoice":
             await this._onCreateChoice(control);
             break;
-        
+          case "deleteChoice":
+            await this._onDeleteChoice(control);
+            break;
+          case "effectManager":
+            this._onEffectManager(control);
+            break;
           default:
             break;
         }
       });
     });
+
+    for (const accordion of this._accordions) {
+      accordion._saveCollapsedState();
+      accordion.bind(html);
+    }
   }
 
   async _onCreateChoice(element) {
@@ -148,8 +189,18 @@ export default class JournalDialoguePageSheet extends JournalPageSheet {
     });
   }
 
-  /* -------------------------------------------- */
+  async _onDeleteChoice(target) {
+    const choiceKey = target.dataset.choiceKey;
+    await this.document.update({
+      [`system.choices.-=${choiceKey}`]: null
+    });
+  }
 
-  /** @inheritDoc */
-  async _onDrop(event) {}
+  _onEffectManager(target) {
+    const choiceKey = target.dataset.choiceKey;
+    const app = CONFIG[CONSTANTS.MODULE_ID].apps.DialogueEffectManager;
+    new app({dialogue: this.document, choiceKey}).render({forche: true});
+  }
+
+  /* -------------------------------------------- */
 }

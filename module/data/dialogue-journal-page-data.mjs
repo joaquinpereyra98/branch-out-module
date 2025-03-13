@@ -15,9 +15,7 @@ export default class DialogueJournalPageData extends foundry.abstract.TypeDataMo
       text: new HTMLField({required: true, blank: true}),
       choices: new MapField(new SchemaField({
         choiceName: new StringField({
-          inital: "New Choice",
-          label: `${this.LOCALIZATION_PREFIX_CHOICES}.choiceName.label`,
-          hint: `${this.LOCALIZATION_PREFIX_CHOICES}.choiceName.hint`
+          inital: "New Choice"
         }),
         choiceText: new StringField({
           label: `${this.LOCALIZATION_PREFIX_CHOICES}.choiceText.label`,
@@ -44,6 +42,9 @@ export default class DialogueJournalPageData extends foundry.abstract.TypeDataMo
           })
         }),
         effects: new MapField(new SchemaField({
+          name: new StringField({
+            initial: "New Effect"
+          }),
           command: new JavaScriptField({
             required: true,
             blank: true,

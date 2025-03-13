@@ -1,3 +1,56 @@
-<form class="{{ cssClass }}" autocomplete="off">
-    
+<form class="{{cssClass}} branch-out dialogue-journal" autocomplete="off">
+    <h1>{{title}}</h1>
+    <div class="text-dialogue-container">
+        <h2>{{localize "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.FIELDS.text.label"}}</h2>
+        <p class="hint">
+            {{localize "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.FIELDS.text.hint"}}
+        </p>
+        <div class="enrich-editor-container">
+            {{{dialogue.text.enrich}}}
+        </div>
+        <div class="list-container">
+            <div class="choices-header list-header flexrow">
+                <h2 class="title-list-header">
+                    {{localize
+                    "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.DialogueChoices.Label"
+                    }}
+                </h2>
+            </div>
+            <p class="hint">
+                {{localize "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.DialogueChoices.Hint"}}
+            </p>
+            <ul class="choices-list list-element">
+                {{#each dialogue.choicesField as | choiceField choiceKey|}}
+                <li class="choice-container item-list">
+                    <div class="choice-header item-header flexrow">
+                        <label class="choice-name">{{choiceField.choiceName.value}}</label>
+                        <div class="icons-header">
+                            {{#if choiceField.condition.value}}
+                            <a class="choice-icon fa-solid fa-flag" data-tooltip="{{localize 
+                                'BRANCH_OUT.DIALOGUE_EFFECT_MANAGER.ChoiceStatus' status='conditioned'}}"></a>
+                            {{/if}}
+                            {{#if choiceField.state.hidden.value}}
+                            <a class="choice-icon fa-solid fa-eye-slash" data-tooltip="{{localize 
+                                'BRANCH_OUT.DIALOGUE_EFFECT_MANAGER.ChoiceStatus' status='hidden' }}"></a>
+                            {{/if}}
+                            {{#if choiceField.state.disabled.value}}
+                            <a class="choice-icon fa-solid fa-lock"
+                                data-tooltip="{{localize 'BRANCH_OUT.DIALOGUE_EFFECT_MANAGER.ChoiceStatus' status='disabled' }}"></a>
+                            {{/if}}
+                            {{#if choiceField.hasEffects}}
+                            <a class="choice-icon fa-solid fa-atom-simple"
+                                data-tooltip="{{localize 'BRANCH_OUT.DIALOGUE_EFFECT_MANAGER.ChoiceHaveEffects'}}"></a>
+                            {{/if}}
+                        </div>
+                        <div class="next-node"
+                            data-tooltip="{{localize 'JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.CHOICES_FIELD.nextNodeId.label'}}">
+                            <i class="fa-solid fa-arrow-right"></i>
+                            {{{choiceField.nextNodeId.anchor}}}
+                        </div>
+                    </div>
+
+                </li>
+                {{/each}}
+            </ul>
+        </div>
 </form>

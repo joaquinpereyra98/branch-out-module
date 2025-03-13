@@ -26,7 +26,8 @@
     "conflicts": []
   },
   "esmodules": [
-    "branch-out.mjs"
+    "branch-out.mjs",
+    "greensock/esm/all.js"
   ],
   "styles": [
     "styles/branch-out.css"
@@ -56,7 +57,9 @@
   "documentTypes": {
     "JournalEntryPage": {
       "dialogue": {
-        "htmlFields": ["text"]
+        "htmlFields": [
+          "text"
+        ]
       }
     }
   }

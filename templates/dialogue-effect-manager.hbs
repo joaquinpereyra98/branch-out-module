@@ -1,0 +1,27 @@
+<div class="effects-container list-container">
+    <div class="effects-header list-header flexrow">
+        <h2 class="title-list-header">
+            {{localize "JOURNALENTRYPAGE.BRANCH_OUT.Dialogue.CHOICES_FIELD.effectsCommand.label"}}
+        </h2>
+        <div class="list-controls">
+            <a data-action="createEffect" data-tooltip="{{localize 'DOCUMENT.Create' type=" Effect"}}">
+                <i class="fa-classic fa-plus-square"></i>
+            </a>
+        </div>
+    </div>
+    <ul class="effects-list list-element">
+        {{#each effects as | effect effectKey|}}
+        <li class="effect-container item-list">
+            <div class="effect-header item-header flexrow">
+                <i class="accordion-icon fa-solid fa-angle-up"></i>
+                <input type="text" name="{{effectKey}}.name" value="{{effect.name}}" class="effect-name">
+            </div>
+            <div class="effect-content item-content">
+                <div class="commande-field">
+                    <textarea name="{{effectKey}}.command" rows="5">{{effect.command}}</textarea>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</div>

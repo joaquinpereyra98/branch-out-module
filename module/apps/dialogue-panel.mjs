@@ -19,7 +19,7 @@ export default class DialoguePanel extends HandlebarsApplicationMixin(
    * @type {ApplicationConfiguration & ApplicationRenderOptions}
   */
   static DEFAULT_OPTIONS = {
-    classes: ["branch-out", "dialogue-panel"],
+    classes: ["branch-out", "dialogue-panel-sheet"],
     tag: "div",
     window: {
       minimizable: false,

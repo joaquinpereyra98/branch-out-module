@@ -51,14 +51,17 @@
         }
       },
       "NodeId": "Node ID",
-      "DialogueText": "Dialogue Text",
       "DialogueChoices": {
         "Label": "Dialogue Choices",
         "Hint": "Define the possible responses and their outcomes."
-      },
-      "EffectManager":{
-        "title": "Effect Manager"
       }
+    }
+  },
+  "BRANCH_OUT": {
+    "DIALOGUE_EFFECT_MANAGER": {
+      "Title": "Effect Manager",
+      "ChoiceStatus": "The current choice is {status}.",
+      "ChoiceHaveEffects": "This choice has effects."
     }
   }
 }
