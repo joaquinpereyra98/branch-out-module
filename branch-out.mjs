@@ -1,4 +1,4 @@
-import {apps, data} from "./module/_module.mjs";
+import {apps, data, hooks} from "./module/_module.mjs";
 import CONSTANTS from "./module/constants.mjs";
 
 Hooks.on("init", () => {
@@ -9,7 +9,8 @@ Hooks.on("init", () => {
 
   CONFIG[CONSTANTS.MODULE_ID] = {
     apps,
-    data
+    data,
+    hooks
   };
 
   Object.assign(CONFIG.JournalEntryPage.dataModels, {
@@ -20,7 +21,11 @@ Hooks.on("init", () => {
     label: "BRANCH_OUT.JournalDialoguePage",
     types: [`${CONSTANTS.MODULE_ID}.dialogue`]
   });
-
-  ui.dialoguePanel = new apps.DialoguePanel();
+  
+  foundry.utils.setProperty(ui, `${CONSTANTS.MODULE_ID}.dialoguePanel`, new apps.DialoguePanel());
 
 });
+
+Hooks.on("hoverToken", hooks.onHoverToken);
+Hooks.on("renderTokenConfig", hooks.onRenderTokenConfig);
+Hooks.on("preUpdateToken", hooks.preUpdateToken);

@@ -41,12 +41,12 @@
           "label": "States",
           "hint": "Define the state of this choice.",
           "hidden": {
-            "label": "Hidden",
-            "hint": "If true, this choice will be hidden."
+            "label": "Hidden on use",
+            "hint": "If true, this choice will be hidden on use."
           },
           "disabled": {
-            "label": "Disabled",
-            "hint": "If true, this choice will be disabled."
+            "label": "Disabled on use",
+            "hint": "If true, this choice will be disabled on use."
           }
         }
       },
@@ -62,6 +62,25 @@
       "Title": "Effect Manager",
       "ChoiceStatus": "The current choice is {status}.",
       "ChoiceHaveEffects": "This choice has effects."
+    },
+    "TOKEN_CONFIG": {
+      "TABS": {
+        "DIALOGUE": "Dialogue"
+      },
+      "FIELDS": {
+        "haveDialogue": {
+          "Label": "Have Dialogues?",
+          "Hint": "If true, this token will have dialogues."
+        },
+        "JournalEntryField": {
+          "Label": "Journal Entry",
+          "Hint": "The JournalEntry document where find the start dialogue."
+        },
+        "JournalEntryPageField": {
+          "Label": "Journal Entry Page",
+          "Hint": "The JournalEntryPage document what represent the start dialogue."
+        }
+      }
     }
   }
 }

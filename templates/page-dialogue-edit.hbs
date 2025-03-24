@@ -36,13 +36,14 @@
       {{#each dialogue.choicesField as | choiceField choiceKey|}}
       <li class="choice-container item-list">
         <div class="choice-header item-header flexrow">
-          <i class="accordion-icon fa-solid fa-angle-up"></i>
+          <i class="accordion-icon fa-solid fa-angle-down"></i>
           {{formInput
           choiceField.choiceName.field
           value=choiceField.choiceName.value
           name=choiceField.choiceName.name
           localize=true
           }}
+          <input class="input-id" type="text" value="{{choiceKey}}" data-tooltip="Choice ID" disabled>
           <a class="delete-choice fa-solid fa-trash" data-action="deleteChoice" data-choice-key="{{choiceKey}}"></a>
         </div>
         <div class="choice-content item-content">

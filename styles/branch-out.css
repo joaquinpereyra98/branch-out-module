@@ -1,40 +1,57 @@
 .branch-out {
     &.dialogue-panel-sheet {
-        .dialogue-panel-container {
-            height: 100%;
-            z-index: 50;
-            position: absolute;
-            display: flex;
-            justify-content: flex-end;
-            top: 0;
-            right: 0;
+        height: 100%;
+        z-index: 50;
+        top: 0;
+        right: 0;
+        position: absolute;
+        display: flex;
 
-            .dialogue-panel {
-                width: 50vh;
-                border: 0.5rem solid transparent;
-                border-image:
-                    linear-gradient(to top,
-                        white,
-                        rgba(0, 0, 0, 0.4),
-                        rgba(0, 0, 0, 0)) 1 100%;
-                background-color: rgba(0, 0, 0, 0.7);
-                padding: 0 1rem;
+        .portrait-container,
+        .panel-container {
+            overflow-x: hidden;
+            pointer-events: none;
+        }
 
-                .close-container {
-                    color: white;
-                }
+        .panel-portrait {
+            width: 24vh;
+            height: 30vh;
+            margin: 10% 0 0;
+            border: 0.5rem solid transparent;
+            border-right: 0;
+            border-image:
+                linear-gradient(to right,
+                    rgba(255, 255, 255, 0.7),
+                    rgba(0, 0, 0, 0.6)) 1;
+            background: rgba(0, 0, 0, 0.7);
+            pointer-events: initial;
+
+            img {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                object-fit: cover;
+                object-position: top;
+                border: 0;
+            }
+        }
+
+        .panel-content {
+            width: 45vh;
+            border: 0.5rem solid transparent;
+            border-image:
+                linear-gradient(to top,
+                    white,
+                    rgba(0, 0, 0, 0.4),
+                    rgba(0, 0, 0, 0)) 1 100%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0 1rem;
+            pointer-events: initial;
+
+            .close-container {
+                color: white;
             }
 
-            .dialogue-portrait {
-                width: 10rem;
-                height: 12rem;
-                margin: 10% 0 0;
-                border: 0.3rem solid transparent;
-                border-right: 0;
-                border-image-slice: 1;
-                border-image-source: linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.6));
-                background-color: rgba(0, 0, 0, 0.4);
-            }
         }
     }
 
@@ -49,9 +66,9 @@
 
             .enrich-editor-container {
                 min-height: 4rem;
-                background-color: rgba(0, 0, 0, 0.2);
+                background: rgba(0, 0, 0, 0.2);
                 border-radius: 0.4rem;
-
+                padding: 0.4rem;
             }
         }
     }
@@ -79,6 +96,10 @@
             margin: 0.1rem 0;
 
             .item-list {
+                &:not(:last-child) {
+                    margin-bottom: 0.5rem;
+                }
+
                 .item-header {
                     border: 2px groove gray;
 
@@ -88,11 +109,20 @@
                         font-size: 1.2rem;
                     }
 
-                    input {
+                    input:not(.input-id) {
                         height: 2rem;
                         font-size: 1.5rem;
                         border: 0;
                         padding: 0 0.5rem;
+                        margin: auto;
+                        flex: 2;
+                    }
+
+                    .input-id {
+                        margin: auto;
+                        flex: 1;
+                        text-align: center;
+                        background: rgba(0, 0, 0, 0.15);
                     }
 
                     .choice-name {
@@ -128,12 +158,13 @@
                 }
 
                 .item-content {
-                    background-color: rgba(0, 0, 0, 0.1);
+                    background: rgba(0, 0, 0, 0.1);
                     border-radius: 0 0 0.4rem 0.4rem;
                     padding: 0 0.4rem;
 
                     .form-group {
                         margin: 0.2rem 0.4rem;
+                        flex: 1;
                     }
 
                     .item-subtitle {
@@ -156,5 +187,16 @@
             }
         }
 
+    }
+
+    &.button-dialogue-canvas {
+        text-shadow: 0 0 8px black;
+        color: white;
+        padding: 0.1em;
+        pointer-events: auto;
+
+        &:hover {
+            text-shadow: 0 0 5px green;
+        }
     }
 }

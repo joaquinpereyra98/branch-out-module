@@ -119,7 +119,6 @@ export default class DialogueEffectManager extends HandlebarsApplicationMixin(Ap
    * @param {FormDataExtended} formData 
    */
   static async #formHandler (event, form, formData) {
-    console.log(formData);
     const submitData = {};
     foundry.utils.setProperty(submitData, `system.choices.${this.choiceKey}.effects`, formData.object);
     await this.dialogue.update(submitData, {render: false});

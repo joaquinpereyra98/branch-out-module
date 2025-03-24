@@ -10,7 +10,6 @@ export default class DialogueJournalPageData extends foundry.abstract.TypeDataMo
   /** @inheritDoc */
   static defineSchema() {
     const {JavaScriptField, SchemaField, StringField, HTMLField, BooleanField} = foundry.data.fields;
-    const document = this.parent;
     return {
       text: new HTMLField({required: true, blank: true}),
       choices: new MapField(new SchemaField({
